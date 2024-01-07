@@ -7,7 +7,7 @@ on:
 
 jobs:
   simple_deployment_pipeline:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,12 +21,8 @@ jobs:
         run: npm run build
       - name: test
         run: npm test
-      - name: deploy to render
-        uses: bounceapp/render-action@0.6.0
+      - name: deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
         with:
-          render-token: ${{secrets.RENDER_TOKEN}}
-          github-token: ${{secrets.GITHUB_TOKEN}}
           service-id: ${{secrets.RENDER_SERVICE_ID}}
-          retries: 20
-          wait: 16000
-          sleep: 30000
+          api-key: ${{secrets.RENDER_TOKEN}}
