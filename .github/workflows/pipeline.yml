@@ -22,8 +22,4 @@ jobs:
       - name: test
         run: npm test
       - name: deploy to production
-        uses: sws2apps/render-deployment@main
-        with:
-          serviceId: ${{secrets.RENDER_SERVICE_ID}}
-          apiKey: ${{secrets.RENDER_TOKEN}}
-          multipleDeployment: false
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_TOKEN}}
