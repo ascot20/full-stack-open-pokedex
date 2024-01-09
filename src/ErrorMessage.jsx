@@ -1,5 +1,5 @@
 import React from 'react'
-//error component
+//error 
 const ErrorMessage = ({ error }) => (
   <div data-testid="error">An error occured: {error.toString()}</div>
 )
