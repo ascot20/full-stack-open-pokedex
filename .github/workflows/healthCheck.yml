@@ -1,0 +1,15 @@
+name: Check server health
+
+on:
+  schedule:
+    - cron: '30 5,17 * * *'
+
+jobs:
+  ping_server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check server health
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://pokedex-app-l0zg.onrender.com
+        
