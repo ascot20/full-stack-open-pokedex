@@ -1,9 +1,8 @@
 name: Testing stuff
 
 on:
-  pull_request:
+  push:
     branches: [master]
-    types: [opened, synchronize]
 
 jobs:
   a_test_job:
@@ -16,9 +15,9 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: commits
         env:
-          COMMITS: ${{ toJson(github.event.pull_request.comments) }}
+          COMMITS: ${{ toJson(github.event.commits) }}
         run: echo "$COMMITS"
       - name: commit messages
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.pull_request.comments.*.message) }}
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
